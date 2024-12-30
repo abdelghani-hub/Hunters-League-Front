@@ -1,0 +1,86 @@
+<!-- login.component.html -->
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center"
+     [ngStyle]="{'background-image': 'url(assets/images/home_image.webp)'}">
+    <!-- Semi-transparent overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50"></div>
+
+    <div class="relative w-full max-w-md p-6 m-4">
+        <div class="bg-white/80 rounded-lg shadow-xl p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-amber-900">Hunter's League</h1>
+                <p class="text-gray-600 mt-2">Welcome back, hunter</p>
+            </div>
+
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                <div class="space-y-4">
+                    <!-- Email Field -->
+                    <div>
+                        <label for="login" class="block text-sm font-medium text-gray-700">
+                            Username
+                        </label>
+                        <input
+                                type="text"
+                                id="login"
+                                name="login"
+                                formControlName="login"
+                                required
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                                [class.border-red-500]="login?.invalid && login?.touched"
+                        />
+                        @if (login?.invalid && login?.touched) {
+                            <p class="mt-1 text-sm text-red-500">Please enter a valid email address</p>
+                        }
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                formControlName="password"
+                                required
+                                minlength="6"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                                [class.border-red-500]="password?.invalid && password?.touched"
+                        />
+                        @if (password?.invalid && password?.touched) {
+                            <p class="mt-1 text-sm text-red-500">Password must be at least 6 characters long</p>
+                        }
+                    </div>
+
+                    <div class="text-sm">
+                        <a routerLink="/forgot-password" class="font-medium text-amber-600 hover:text-amber-500">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Error -->
+                    <div *ngIf="errorMessage" class="mt-2 text-md text-center text-red-500">
+                        {{ errorMessage }}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                            type="submit"
+                            [disabled]="loginForm.invalid"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-800 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Sign in
+                    </button>
+                </div>
+            </form>
+
+            <!-- Registration Link -->
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Not a member?
+                <a routerLink="/register" class="font-medium text-amber-600 hover:text-amber-500">
+                    Join the League
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
