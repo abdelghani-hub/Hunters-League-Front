@@ -1,0 +1,233 @@
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center"
+     [ngStyle]="{'background-image': 'url(assets/images/home_image.webp)'}">
+  <!-- Semi-transparent overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50"></div>
+
+  <div class="relative w-full max-w-2xl p-6 m-4">
+    <div class="bg-white/90 rounded-lg shadow-xl p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-amber-900">Join Hunter's League</h1>
+        <p class="text-gray-600 mt-2">Create your account</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- First Name -->
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="firstName?.touched && firstName?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (firstName?.touched && firstName?.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">First name is required</p>
+            }
+            <div *ngIf="registerForm.controls['lastName'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['lastName'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Last Name -->
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="lastName?.touched && lastName?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (lastName?.touched && lastName?.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">Last name is required</p>
+            }
+            <div *ngIf="registerForm.controls['lastName'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['lastName'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Username -->
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="username?.touched && username?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (username?.touched && username?.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">Username is required</p>
+            }
+            <div *ngIf="registerForm.controls['username'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['username'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="email?.touched && email?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (email?.touched && email?.errors) {
+              @if (email?.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Email is required</p>
+              } @else if (email?.errors?.['email']) {
+                <p class="mt-1 text-sm text-red-500">Please enter a valid email</p>
+              }
+            }
+            <div *ngIf="registerForm.controls['email'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['email'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="password?.touched && password?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (password?.touched && password?.errors) {
+              @if (password?.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Password is required</p>
+              } @else if (password?.errors?.['minlength']) {
+                <p class="mt-1 text-sm text-red-500">Password must be at least 6 characters</p>
+              }
+            }
+            <div *ngIf="registerForm.controls['password'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['password'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="confirmPassword?.touched && (confirmPassword?.invalid || registerForm.errors?.['passwordMismatch'])"
+            />
+            <!-- Error message ❌ -->
+            @if (confirmPassword?.touched) {
+              @if (confirmPassword?.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Please confirm your password</p>
+              } @else if (registerForm.errors?.['passwordMismatch']) {
+                <p class="mt-1 text-sm text-red-500">Passwords do not match</p>
+              }
+            }
+            <div *ngIf="registerForm.controls['confirmPassword'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['confirmPassword'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- CIN -->
+          <div>
+            <label for="cin" class="block text-sm font-medium text-gray-700">
+              CIN
+            </label>
+            <input
+              type="text"
+              id="cin"
+              formControlName="cin"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="cin?.touched && cin?.invalid"
+            />
+            <!-- Error message ❌ -->
+            @if (cin?.touched && cin?.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">CIN is required</p>
+            }
+            <div *ngIf="registerForm.controls['cin'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['cin'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+
+          <!-- Nationality -->
+          <div>
+            <label for="nationality" class="block text-sm font-medium text-gray-700">
+              Nationality
+            </label>
+            <select
+              id="nationality"
+              formControlName="nationality"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              [class.border-red-500]="nationality?.touched && nationality?.invalid"
+            >
+              <option selected class="text-gray-300 dark:text-gray-700">Nationality</option>
+              <option value="TN">Tunisia</option>
+              <option value="US">United States</option>
+              <option value="UK">United Kingdom</option>
+              <!-- Add more options as needed -->
+            </select>
+            <!-- Error message ❌ -->
+            @if (nationality?.touched && nationality?.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">Please select your nationality</p>
+            }
+            <div *ngIf="registerForm.controls['nationality'].errors?.['serverError']" class="mt-1 text-sm text-red-500">
+              {{ registerForm.controls['nationality'].errors?.['serverError'] }}
+            </div>
+            <!-- end Error message ❌ -->
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid || loading"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-800 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            @if (loading) {
+              <span class="inline-block animate-spin mr-2">↻</span>
+            }
+            Create Account
+          </button>
+        </div>
+      </form>
+
+      <!-- Login Link -->
+      <p class="mt-4 text-center text-sm text-gray-600">
+        Already have an account?
+        <a routerLink="/auth/login" class="font-medium text-amber-600 hover:text-amber-500">
+          Sign in
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
