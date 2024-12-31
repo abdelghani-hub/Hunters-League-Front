@@ -3,11 +3,6 @@ import {CommonModule} from "@angular/common";
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../../core/services/auth.service";
-import {jwtDecode, JwtPayload} from "jwt-decode";
-
-interface CustomJwtPayload extends JwtPayload {
-  role: string;
-}
 
 @Component({
   selector: 'app-login',
@@ -43,15 +38,7 @@ export class LoginComponent {
       this.authService.login(login!, password!)
         .subscribe({
           next: (res  ) => {
-            // redirect depending on role
-            let decodedJWT = jwtDecode<CustomJwtPayload>(res.token);
-            let route: String;
-            switch (decodedJWT.role) {
-              case 'ADMIN': route = '/dashboard'; break;
-              case 'JURY': route = '/jury'; break;
-              case 'MEMBER': route = '/home'; break;
-              default: route = '/login'; break;
-            }
+            let route: string = this.authService.getRoleRoute(res);
             this.router.navigate([route])
               .then(r => {
                 return r;
