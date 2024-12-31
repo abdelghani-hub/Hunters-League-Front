@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        appbg: '#fff8e0',
+      }
+    },
   },
   plugins: [],
 }

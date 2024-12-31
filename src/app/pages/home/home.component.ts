@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import {CompetitionCardComponent} from "../../components/competition-card/competition-card.component";
+import {Component, inject, OnInit} from '@angular/core';
+// @ts-ignore
+import {Competition, CompetitionCardComponent} from "../../components/competition-card/competition-card.component";
 import {NgForOf} from "@angular/common";
+import {CompetitionService} from "../../core/services/competition.service";
+import {PageRequest} from "../../core/models/pagination.types";
 
 @Component({
   selector: 'app-home',
@@ -9,18 +12,18 @@ import {NgForOf} from "@angular/common";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  competitions = [
-    {
-      id: '1',
-      code: 'DEER2024',
-      date: '2024-05-15',
-      location: 'Northern Quebec',
-      max_participants: 50,
-      min_participants: 10,
-      open_registration: true,
-      species_type: 'Deer'
-    },
-    // Add more competitions...
-  ];
+export class HomeComponent implements OnInit {
+  private competitionService = inject(CompetitionService);
+  competitions: Competition[] = [];
+
+  ngOnInit(): void {
+    let pageRequest: PageRequest = {
+      page: 0,
+      size: 6,
+    }
+    this.competitionService.getPageCompetition(pageRequest)
+      .subscribe(res => {
+        this.competitions = res;
+      });
+  }
 }
