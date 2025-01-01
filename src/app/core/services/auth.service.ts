@@ -112,6 +112,10 @@ export class AuthService {
       return null;
     }
     let decodedJWT = jwtDecode<CustomJwtPayload>(this.currentUserValue?.token!);
+    if (decodedJWT.exp && decodedJWT.exp < Date.now() / 1000) {
+      this.logout();
+      return null;
+    }
     return decodedJWT.role ?? null;
   }
 }
