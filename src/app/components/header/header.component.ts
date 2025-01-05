@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
+import {AuthService} from "../../core/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,4 +14,15 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class HeaderComponent {
 
+  private authService: AuthService;
+  private router: Router;
+
+  constructor(authService: AuthService, router: Router) {
+    this.authService = authService;
+    this.router = router;
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
