@@ -7,10 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        appbg: '#fff8e0',
+        appbg: {
+          light: '#fff8e0',
+          dark: '#1a202c',
+          default: '#fff8e0',
+        },
       }
     },
   },
+  darkMode: 'media',
   plugins: [
     require('flowbite/plugin')
   ],

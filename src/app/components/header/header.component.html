@@ -1,8 +1,8 @@
-<nav class="absolute top-0 w-full z-10 bg-amber-700/40 backdrop-blur-sm">
+<header class="absolute top-0 w-full z-10 bg-amber-700/50 dark:bg-amber-900 backdrop-blur-sm">
   <div class="container mx-auto px-6 py-4">
     <div class="flex items-center justify-between">
       <div class="flex items-center">
-        <span class="text-2xl font-bold text-white">Hunter's League</span>
+        <app-logo></app-logo>
       </div>
 
       <div class="hidden md:flex space-x-8">
@@ -25,6 +25,9 @@
             <li>
               <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
             </li>
+            <li *ngIf="role == 'ADMIN'">
+              <a routerLink="/dashboard" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            </li>
           </ul>
           <div class="py-1">
             <button (click)="logout()" class="block px-4 py-2 text-sm text-left w-full rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>
@@ -33,4 +36,4 @@
       </div>
     </div>
   </div>
-</nav>
+</header>

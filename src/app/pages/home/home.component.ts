@@ -1,9 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 // @ts-ignore
-import {Competition, CompetitionCardComponent} from "../../components/competition-card/competition-card.component";
+import {CompetitionCardComponent} from "../../components/competition-card/competition-card.component";
 import {NgForOf} from "@angular/common";
 import {CompetitionService} from "../../core/services/competition.service";
 import {PageRequest} from "../../core/models/pagination.types";
+import Competition from "../../types/Competition";
 
 @Component({
   selector: 'app-home',
@@ -21,9 +22,9 @@ export class HomeComponent implements OnInit {
       page: 0,
       size: 6,
     }
-    this.competitionService.getPageCompetition(pageRequest)
+    this.competitionService.getPage(pageRequest)
       .subscribe(res => {
-        this.competitions = res;
+        this.competitions = res.content;
       });
   }
 }

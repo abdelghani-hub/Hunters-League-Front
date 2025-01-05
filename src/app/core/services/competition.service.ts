@@ -4,7 +4,8 @@ import {catchError, map} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {PageRequest} from "../models/pagination.types";
-import {Competition} from "../../components/competition-card/competition-card.component";
+import {httpService} from "./http.service";
+import Competition from "../../types/Competition";
 
 interface Pageable {
   page: number;
@@ -25,15 +26,12 @@ interface PageableResponse<T> {
 @Injectable({
   providedIn: 'root'
 })
-export class CompetitionService {
-  private http: HttpClient;
-  private router: Router;
-  private baseURL: string = 'http://localhost:8443/api/v1';
+export class CompetitionService extends httpService<Competition> {
 
+  protected endpoint = 'competitions';
 
   constructor(http: HttpClient, router: Router) {
-    this.http = http;
-    this.router = router;
+    super(http, router);
   }
 
   getPageCompetition(pageable: PageRequest) {
