@@ -5,6 +5,7 @@ import {roleGuard} from "../../core/guards/role.guard";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {MembersComponent} from "./members/members.component";
 import {CompetitionsComponent} from "./competitions/competitions.component";
+import {SpeciesComponent} from "./species/species.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -31,6 +32,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: 'competitions',
         component: CompetitionsComponent,
+      },
+      {
+        path: 'species',
+        component: SpeciesComponent,
       }
     ]
   }
