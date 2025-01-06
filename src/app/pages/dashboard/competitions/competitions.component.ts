@@ -18,7 +18,7 @@ import {CompetitionService} from "../../../core/services/competition.service";
 export class CompetitionsComponent implements OnInit {
   public competitions: Competition[] = [];
   public currentPage = 0;
-  public pageSize = 6;
+  public pageSize = 7;
   public totalElements = 0;
   public totalPages = 0;
   public loading = false;
