@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {DatePipe, NgClass, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import Species from "../../../types/Species";
 import {SpeciesService} from "../../../core/services/species.service";
-import {switchAll} from "rxjs";
+import {PaginationComponent} from "../../../components/pagination/pagination.component";
+import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-species',
@@ -10,9 +12,10 @@ import {switchAll} from "rxjs";
   imports: [
     NgForOf,
     NgIf,
-    DatePipe,
-    UpperCasePipe,
-    NgClass
+    NgClass,
+    PaginationComponent,
+    TableLoaderComponent,
+    FormsModule
   ],
   templateUrl: './species.component.html',
   styleUrl: './species.component.css'
@@ -20,7 +23,7 @@ import {switchAll} from "rxjs";
 export class SpeciesComponent implements OnInit {
   public species: Species[] = [];
   public currentPage = 0;
-  public pageSize = 8;
+  public pageSize = 10;
   public totalElements = 0;
   public totalPages = 0;
   public loading = false;
@@ -58,11 +61,10 @@ export class SpeciesComponent implements OnInit {
     this.initializePage();
   }
 
-  public onPageSizeChange(size: number): void {
-    this.pageSize = size;
-    this.currentPage = 0; // Reset to first page
+  public onPageSizeChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.pageSize = +selectedValue;
+    this.currentPage = 0;
     this.initializePage();
   }
-
-  protected readonly switchAll = switchAll;
 }

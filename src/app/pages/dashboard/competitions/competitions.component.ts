@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import Competition from "../../../types/Competition";
 import {CompetitionService} from "../../../core/services/competition.service";
+import {PaginationComponent} from "../../../components/pagination/pagination.component";
+import {FormsModule} from "@angular/forms";
+import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
 
 @Component({
   selector: 'app-competitions',
@@ -9,7 +12,10 @@ import {CompetitionService} from "../../../core/services/competition.service";
   imports: [
     NgForOf,
     NgIf,
-    DatePipe
+    DatePipe,
+    PaginationComponent,
+    FormsModule,
+    TableLoaderComponent
   ],
   templateUrl: './competitions.component.html',
   styleUrl: './competitions.component.css'
@@ -18,7 +24,7 @@ import {CompetitionService} from "../../../core/services/competition.service";
 export class CompetitionsComponent implements OnInit {
   public competitions: Competition[] = [];
   public currentPage = 0;
-  public pageSize = 7;
+  public pageSize = 10;
   public totalElements = 0;
   public totalPages = 0;
   public loading = false;
@@ -56,8 +62,9 @@ export class CompetitionsComponent implements OnInit {
     this.initializePage();
   }
 
-  public onPageSizeChange(size: number): void {
-    this.pageSize = size;
+  public onPageSizeChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.pageSize = +selectedValue;
     this.currentPage = 0;
     this.initializePage();
   }

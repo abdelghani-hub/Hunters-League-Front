@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import Member from "../../../types/Member";
 import {MemberService} from "../../../core/services/member.service";
+import {PaginationComponent} from "../../../components/pagination/pagination.component";
+import {FormsModule} from "@angular/forms";
+import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
 
 @Component({
   selector: 'app-members',
@@ -10,7 +13,10 @@ import {MemberService} from "../../../core/services/member.service";
     NgForOf,
     NgIf,
     DatePipe,
-    UpperCasePipe
+    UpperCasePipe,
+    PaginationComponent,
+    FormsModule,
+    TableLoaderComponent
   ],
   templateUrl: './members.component.html',
   styleUrl: './members.component.css'
@@ -18,7 +24,7 @@ import {MemberService} from "../../../core/services/member.service";
 export class MembersComponent implements OnInit {
   public members: Member[] = [];
   public currentPage = 0;
-  public pageSize = 6;
+  public pageSize = 10;
   public totalElements = 0;
   public totalPages = 0;
   public loading = false;
@@ -56,9 +62,10 @@ export class MembersComponent implements OnInit {
     this.initializePage();
   }
 
-  public onPageSizeChange(size: number): void {
-    this.pageSize = size;
-    this.currentPage = 0; // Reset to first page
+  public onPageSizeChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.pageSize = +selectedValue;
+    this.currentPage = 0;
     this.initializePage();
   }
 }
