@@ -4,6 +4,7 @@ import {HomeComponent} from "../home/home.component";
 import {roleGuard} from "../../core/guards/role.guard";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {MembersComponent} from "./members/members.component";
+import {CompetitionsComponent} from "./competitions/competitions.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -26,6 +27,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: 'members',
         component: MembersComponent,
+      },
+      {
+        path: 'competitions',
+        component: CompetitionsComponent,
       }
     ]
   }
