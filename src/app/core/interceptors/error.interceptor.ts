@@ -1,7 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 export const errorInterceptor: HttpInterceptorFn = (response, next) => {

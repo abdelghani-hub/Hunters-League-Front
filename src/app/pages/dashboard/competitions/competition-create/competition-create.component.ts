@@ -4,6 +4,7 @@ import {CompetitionService} from "../../../../core/services/competition.service"
 import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import Swal from "sweetalert2";
+import ErrorHandler from "../../../../helpers/errorHandler";
 
 
 @Component({
@@ -61,11 +62,6 @@ export class CompetitionCreateComponent {
     if (this.competitionForm.valid) {
       const formValue = this.competitionForm.value;
 
-      // Generate code based on location and date
-      const date = new Date(formValue.date);
-      const formattedDate = date.toISOString().split('T')[0];
-
-
       const competition = {
         ...formValue,
         date: new Date(formValue.date).toISOString()
@@ -85,7 +81,7 @@ export class CompetitionCreateComponent {
                 title: 'Competition created',
                 text: 'The competition has been created successfully',
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 2500,
                 position: 'top-end'
               }
             )
@@ -94,26 +90,10 @@ export class CompetitionCreateComponent {
         error: (error) => {
           console.error('Error creating competition:', error);
           if (error && error.error) {
-            this.handleServerErrors(error.error);
+            this.serverErrors = ErrorHandler.handleServerErrors(error.error);
           }
         }
       });
-    }
-  }
-
-  private handleServerErrors(errors: { [key: string]: string | string[] | (string | string[])[] }) {
-    // Reset server errors
-    this.serverErrors = {};
-
-    for (const field in errors) {
-        const errorValue = errors[field];
-        if (typeof errorValue === 'string') {
-          this.serverErrors[field] = [errorValue];
-        } else if (Array.isArray(errorValue)) {
-          this.serverErrors[field] = errorValue.flatMap(item =>
-            Array.isArray(item) ? item : [item]
-          );
-        }
     }
   }
 }

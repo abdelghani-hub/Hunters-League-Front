@@ -146,7 +146,7 @@
         <button
           type="submit"
           class="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
-
+          [disabled]="!competitionForm.valid"
         >
           Create
         </button>

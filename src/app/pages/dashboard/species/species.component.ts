@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {DatePipe, NgClass, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import Species from "../../../types/Species";
 import {SpeciesService} from "../../../core/services/species.service";
 import {PaginationComponent} from "../../../components/pagination/pagination.component";
 import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
 import {FormsModule} from "@angular/forms";
+import {CreateBtnComponent} from "../../../components/create-btn/create-btn.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-species',
@@ -15,7 +17,9 @@ import {FormsModule} from "@angular/forms";
     NgClass,
     PaginationComponent,
     TableLoaderComponent,
-    FormsModule
+    FormsModule,
+    CreateBtnComponent,
+    RouterLink
   ],
   templateUrl: './species.component.html',
   styleUrl: './species.component.css'
