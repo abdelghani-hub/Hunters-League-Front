@@ -5,6 +5,7 @@ import {MemberService} from "../../../core/services/member.service";
 import {PaginationComponent} from "../../../components/pagination/pagination.component";
 import {FormsModule} from "@angular/forms";
 import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-members',
@@ -16,7 +17,8 @@ import {TableLoaderComponent} from "../../../components/table-loader/table-loade
     UpperCasePipe,
     PaginationComponent,
     FormsModule,
-    TableLoaderComponent
+    TableLoaderComponent,
+    RouterLink
   ],
   templateUrl: './members.component.html',
   styleUrl: './members.component.css'

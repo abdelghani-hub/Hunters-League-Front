@@ -1,0 +1,170 @@
+<div class="p-6 max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow">
+  <div class="mb-6">
+    <h2 class="text-xl text-center font-semibold text-gray-800 dark:text-white">Update Member</h2>
+  </div>
+
+  <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+    <div class="grid gap-4">
+      <div class="text-center" *ngFor="let error of serverErrors['error']">
+        <span class="text-red-500 dark:text-red-400 text-sm">
+          {{ error }}
+        </span>
+      </div>
+
+      <div class="space-y-2 flex justify-between items-end gap-2">
+        <div class="w-1/2">
+          <label for="firstName" class="text-sm font-medium text-gray-700 dark:text-gray-300">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('firstName')?.errors?.['required'] && memberForm.get('firstName')?.touched">
+          First Name is required
+        </span>
+        </div>
+
+        <div class="w-1/2">
+          <label for="lastName" class="text-sm font-medium text-gray-700 dark:text-gray-300">Last Name</label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('lastName')?.errors?.['required'] && memberForm.get('lastName')?.touched">
+          Last Name is required
+        </span>
+        </div>
+      </div>
+
+      <div class="space-y-2 flex justify-between items-end gap-2">
+        <div class="w-1/2">
+          <label for="username" class="text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('username')?.errors?.['required'] && memberForm.get('username')?.touched">
+            Username is required
+          </span>
+        </div>
+        <div class="w-1/2">
+          <label for="email" class="text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('email')?.errors?.['required'] && memberForm.get('email')?.touched">
+          Email is required
+        </span>
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('email')?.errors?.['email'] && memberForm.get('email')?.touched">
+          Please enter a valid email
+        </span>
+        </div>
+      </div>
+
+      <div class="space-y-2 flex justify-between items-end gap-2">
+        <div class="w-1/2">
+          <label for="cin" class="text-sm font-medium text-gray-700 dark:text-gray-300">CIN</label>
+          <input
+            id="cin"
+            type="text"
+            formControlName="cin"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('cin')?.errors?.['required'] && memberForm.get('cin')?.touched">
+          CIN is required
+        </span>
+        </div>
+
+        <div class="w-1/2">
+          <label for="nationality" class="text-sm font-medium text-gray-700 dark:text-gray-300">Nationality</label>
+          <input
+            id="nationality"
+            type="text"
+            formControlName="nationality"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('nationality')?.errors?.['required'] && memberForm.get('nationality')?.touched">
+          Nationality is required
+        </span>
+        </div>
+      </div>
+
+      <div class="space-y-2 flex justify-between items-end gap-2">
+        <div class="w-1/2">
+          <label for="password" class="text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+          <input
+            id="password"
+            type="text"
+            formControlName="password"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('password')?.errors?.['required'] && memberForm.get('password')?.touched">
+          Password is required
+        </span>
+        </div>
+
+        <div class="w-1/2">
+          <label for="role" class="text-sm font-medium text-gray-700 dark:text-gray-300">Role</label>
+          <select
+            id="role"
+            type="text"
+            formControlName="role"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          >
+          <option value="MEMBER">Member</option>
+          <option value="JURY">Jury</option>
+          <option value="ADMIN">Admin</option>
+          </select>
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="memberForm.get('role')?.errors?.['required'] && memberForm.get('role')?.touched">
+            Role is required
+          </span>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="licenseExpirationDate" class="text-sm font-medium text-gray-700 dark:text-gray-300">License
+          Expiration Date</label>
+        <input
+          id="licenseExpirationDate"
+          type="datetime-local"
+          formControlName="licenseExpirationDate"
+          class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+        />
+        <span class="text-red-500 dark:text-red-400 text-xs"
+              *ngIf="memberForm.get('licenseExpirationDate')?.errors?.['required'] && memberForm.get('licenseExpirationDate')?.touched">
+          License Expiration Date is required
+        </span>
+      </div>
+
+      <div class="flex justify-end mt-6 gap-3">
+        <a routerLink="/dashboard/members"
+           class="px-4 py-2 border rounded-md text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+          Cancel
+        </a>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+          [disabled]="!memberForm.valid">
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

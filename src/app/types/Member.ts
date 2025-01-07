@@ -1,5 +1,5 @@
 type Member = {
-  id: string; // UUID
+  id?: string;
   username: string;
   password: string;
   role: string;
@@ -8,7 +8,7 @@ type Member = {
   cin: string;
   email: string;
   nationality: string;
-  joinDate: string;
+  joinDate?: string;
   licenseExpirationDate: string;
 };
 

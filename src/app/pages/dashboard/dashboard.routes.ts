@@ -9,6 +9,7 @@ import {CompetitionCreateComponent} from "./competitions/competition-create/comp
 import {SpeciesCreateComponent} from "./species/species-create/species-create.component";
 import {CompetitionUpdateComponent} from "./competitions/competition-update/competition-update.component";
 import {SpeciesUpdateComponent} from "./species/species-update/species-update.component";
+import {MemberUpdateComponent} from "./members/member-update/member-update.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -33,6 +34,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: 'members',
         component: MembersComponent,
+      },
+      {
+        path: 'members/edit/:username',
+        component: MemberUpdateComponent,
       },
 
       // Competitions routes
