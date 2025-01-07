@@ -6,6 +6,7 @@ import {StatisticsComponent} from "./statistics/statistics.component";
 import {MembersComponent} from "./members/members.component";
 import {CompetitionsComponent} from "./competitions/competitions.component";
 import {SpeciesComponent} from "./species/species.component";
+import {CompetitionCreateComponent} from "./competitions/competition-create/competition-create.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -25,14 +26,28 @@ export const DASHBOARD_ROUTES: Routes = [
         path: 'statistics',
         component: StatisticsComponent,
       },
+
+      // Members routes
       {
         path: 'members',
         component: MembersComponent,
       },
+
+      // Competitions routes
       {
         path: 'competitions',
         component: CompetitionsComponent,
       },
+      {
+        path: 'competitions/create',
+        component: CompetitionCreateComponent,
+      },
+      {
+        path: 'competitions/:code',
+        component: CompetitionCreateComponent,
+      },
+
+      // Species routes
       {
         path: 'species',
         component: SpeciesComponent,

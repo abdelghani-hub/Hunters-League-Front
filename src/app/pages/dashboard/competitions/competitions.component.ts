@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import Competition from "../../../types/Competition";
 import {CompetitionService} from "../../../core/services/competition.service";
 import {PaginationComponent} from "../../../components/pagination/pagination.component";
 import {FormsModule} from "@angular/forms";
 import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
+import {CompetitionCreateComponent} from "./competition-create/competition-create.component";
+import {RouterLink} from "@angular/router";
+import {CreateBtnComponent} from "../../../components/create-btn/create-btn.component";
 
 @Component({
   selector: 'app-competitions',
@@ -15,7 +18,10 @@ import {TableLoaderComponent} from "../../../components/table-loader/table-loade
     DatePipe,
     PaginationComponent,
     FormsModule,
-    TableLoaderComponent
+    TableLoaderComponent,
+    CompetitionCreateComponent,
+    RouterLink,
+    CreateBtnComponent,
   ],
   templateUrl: './competitions.component.html',
   styleUrl: './competitions.component.css'

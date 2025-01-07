@@ -45,14 +45,14 @@ export abstract class httpService<T> {
   }
 
   create(item: T): Observable<T> {
-    return this.http.post<T>(`${this.baseURL}/${this.endpoint}`, item)
+    return this.http.post<T>(`${this.baseURL}/${this.endpoint}/create`, item)
       .pipe(
         catchError(this.handleError.bind(this))
       );
   }
 
   update(id: number | string, item: T): Observable<T> {
-    return this.http.put<T>(`${this.baseURL}/${this.endpoint}/${id}`, item)
+    return this.http.put<T>(`${this.baseURL}/${this.endpoint}/update`, item)
       .pipe(
         catchError(this.handleError.bind(this))
       );
