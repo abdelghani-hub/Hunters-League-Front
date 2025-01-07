@@ -14,4 +14,8 @@ export class SpeciesService extends httpService<Species> {
   constructor(http: HttpClient, router: Router) {
     super(http, router);
   }
+
+  getByName(name: string) {
+    return this.http.get<Species>(`${this.baseURL}/species/name`, {params: {name}});
+  }
 }

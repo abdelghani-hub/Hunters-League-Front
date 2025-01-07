@@ -1,5 +1,5 @@
 type Species = {
-  id: string; // UUID
+  id?: string;
   name: string;
   category: string;
   minimumWeight: number;
