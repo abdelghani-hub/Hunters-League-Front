@@ -1,4 +1,5 @@
 type Competition = {
+  id?: string;
   code: string;
   date: string;
   location: string;

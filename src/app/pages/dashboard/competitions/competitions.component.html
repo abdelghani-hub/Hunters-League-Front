@@ -40,6 +40,13 @@
               </th>
 
               <th scope="col"
+                  class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <button class="flex items-center gap-x-2">
+                  <span>Species Type</span>
+                </button>
+              </th>
+
+              <th scope="col"
                   class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <button class="flex items-center gap-x-2">
                   <span>Date</span>
@@ -55,13 +62,6 @@
                   class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <button class="flex items-center gap-x-2">
                   <span>Registration</span>
-                </button>
-              </th>
-
-              <th scope="col"
-                  class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <button class="flex items-center gap-x-2">
-                  <span>Species Type</span>
                 </button>
               </th>
 
@@ -96,6 +96,19 @@
                   </div>
                 </div>
               </td>
+              <td class="px-4 py-4 text-sm whitespace-nowrap">
+                <div class="flex items-center gap-x-2">
+                  <span [class]="
+                      competition.speciesType === 'BIRD' ?
+                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' :
+                      competition.speciesType === 'SEA' ?
+                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' :
+                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300'
+                  ">
+                    {{ competition.speciesType }}
+                  </span>
+                </div>
+              </td>
               <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -126,19 +139,6 @@
               </td>
               <td class="px-4 py-4 text-sm whitespace-nowrap">
                 <div class="flex items-center gap-x-2">
-                  <span [class]="
-                      competition.speciesType === 'BIRD' ?
-                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' :
-                      competition.speciesType === 'SEA' ?
-                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' :
-                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                  ">
-                    {{ competition.speciesType }}
-                  </span>
-                </div>
-              </td>
-              <td class="px-4 py-4 text-sm whitespace-nowrap">
-                <div class="flex items-center gap-x-2">
                   <span class="text-gray-500 dark:text-gray-300">345
                     <!--                    {{ competition.participates }}  -->
                   </span>
@@ -155,14 +155,14 @@
                     </svg>
                   </button>
 
-                  <button
-                    class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                  <a [routerLink]="'/dashboard/competitions/edit/' + competition.code"
+                     class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                     </svg>
-                  </button>
+                  </a>
                 </div>
               </td>
             </tr>

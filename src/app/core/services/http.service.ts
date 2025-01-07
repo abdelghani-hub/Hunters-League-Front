@@ -51,7 +51,7 @@ export abstract class httpService<T> {
       );
   }
 
-  update(id: number | string, item: T): Observable<T> {
+  update(item: T): Observable<T> {
     return this.http.put<T>(`${this.baseURL}/${this.endpoint}/update`, item)
       .pipe(
         catchError(this.handleError.bind(this))

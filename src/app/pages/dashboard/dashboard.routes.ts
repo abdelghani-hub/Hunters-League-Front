@@ -7,6 +7,7 @@ import {CompetitionsComponent} from "./competitions/competitions.component";
 import {SpeciesComponent} from "./species/species.component";
 import {CompetitionCreateComponent} from "./competitions/competition-create/competition-create.component";
 import {SpeciesCreateComponent} from "./species/species-create/species-create.component";
+import {CompetitionUpdateComponent} from "./competitions/competition-update/competition-update.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -43,8 +44,8 @@ export const DASHBOARD_ROUTES: Routes = [
         component: CompetitionCreateComponent,
       },
       {
-        path: 'competitions/:code',
-        component: CompetitionCreateComponent,
+        path: 'competitions/edit/:code',
+        component: CompetitionUpdateComponent,
       },
 
       // Species routes

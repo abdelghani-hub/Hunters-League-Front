@@ -30,4 +30,8 @@ export class CompetitionService extends httpService<Competition> {
   constructor(http: HttpClient, router: Router) {
     super(http, router);
   }
+
+  getByCode(code: string) {
+    return this.http.get<Competition>(`${this.baseURL}/competitions/${code}`);
+  }
 }
