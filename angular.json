@@ -5,7 +5,14 @@
   "projects": {
     "hunters_league": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,11 +35,6 @@
               "src/styles.css"
             ],
             "scripts": []
-//            "server": "src/main.server.ts",
-//            "prerender": false,
-//            "ssr": {
-//              "entry": "server.ts"
-//            }
           },
           "configurations": {
             "production": {

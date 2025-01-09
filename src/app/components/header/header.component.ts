@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {Component} from '@angular/core';
+import {NgIf, NgOptimizedImage} from "@angular/common";
+import {AuthService} from "../../core/services/auth.service";
+import {Router, RouterLink} from "@angular/router";
+import {LogoComponent} from "../logo/logo.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgIf,
+    RouterLink,
+    LogoComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
+  private authService: AuthService;
+  private router: Router;
+  role: string | null;
+
+  constructor(authService: AuthService, router: Router) {
+    this.authService = authService;
+    this.router = router;
+    this.role = authService.getCurrentRole();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
