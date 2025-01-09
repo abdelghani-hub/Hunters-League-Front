@@ -1,16 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
-
-export interface Competition {
-  code: string;
-  date: string;
-  location: string;
-  maxParticipants: number;
-  minParticipants: number;
-  openRegistration: boolean;
-  speciesType: string;
-}
-
+import Competition from "../../types/Competition";
 
 @Component({
   selector: 'app-competition-card',

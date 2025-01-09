@@ -1,0 +1,123 @@
+<div class="p-6 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow">
+    <div class="mb-6">
+        <h2 class="text-xl text-center font-semibold text-gray-800 dark:text-white">Update Species</h2>
+    </div>
+
+    <form [formGroup]="speciesForm" (ngSubmit)="onSubmit()">
+        <div class="grid gap-4">
+            <div class="text-center" *ngFor="let error of serverErrors['error']">
+        <span class="text-red-500 dark:text-red-400 text-sm">
+          {{ error }}
+        </span>
+            </div>
+
+            <div class="flex justify-between items-center gap-2">
+                <div class="w-1/2 space-y-2">
+                    <label for="name" class="w-auto text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                    <input
+                            id="name"
+                            type="text"
+                            formControlName="name"
+                            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+                    />
+                    <span class="text-red-500 dark:text-red-400 text-xs"
+                          *ngIf="speciesForm.get('name')?.errors?.['required'] && speciesForm.get('name')?.touched">
+          Name is required
+        </span>
+                    <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['name']">
+          {{ error }}
+        </span>
+                </div>
+
+                <div class="w-1/2 space-y-2">
+                    <label for="category" class="text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
+                    <select
+                            id="category"
+                            formControlName="category"
+                            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+                    >
+                        <option value="SEA">Sea</option>
+                        <option value="BIG_GAME">Big Game</option>
+                        <option value="BIRD">Bird</option>
+                    </select>
+                    <span class="text-red-500 dark:text-red-400 text-xs"
+                          *ngIf="speciesForm.get('category')?.errors?.['required'] && speciesForm.get('category')?.touched">
+            Category is required
+          </span>
+                    <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['category']">
+            {{ error }}
+          </span>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label for="minimumWeight" class="text-sm font-medium text-gray-700 dark:text-gray-300">Minimum Weight</label>
+                <input
+                        id="minimumWeight"
+                        type="number"
+                        formControlName="minimumWeight"
+                        min="0"
+                        class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+                />
+                <span class="text-red-500 dark:text-red-400 text-xs"
+                      *ngIf="speciesForm.get('minimumWeight')?.errors?.['required'] && speciesForm.get('minimumWeight')?.touched">
+          Minimum Weight is required
+        </span>
+                <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['minimumWeight']">
+          {{ error }}
+        </span>
+            </div>
+
+            <div class="space-y-2">
+                <label for="difficulty" class="text-sm font-medium text-gray-700 dark:text-gray-300">Difficulty</label>
+                <select
+                        id="difficulty"
+                        formControlName="difficulty"
+                        class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+                >
+                    <option value="COMMON">Common (1)</option>
+                    <option value="RARE">Rare (2)</option>
+                    <option value="EPIC">Epic (3)</option>
+                    <option value="LEGENDARY">Legendary (5)</option>
+                </select>
+                <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['difficulty']">
+          {{ error }}
+        </span>
+            </div>
+
+            <div class="space-y-2">
+                <label for="points" class="text-sm font-medium text-gray-700 dark:text-gray-300">Points</label>
+                <input
+                        id="points"
+                        type="number"
+                        formControlName="points"
+                        min="0"
+                        class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+                />
+                <span class="text-red-500 dark:text-red-400 text-xs"
+                      *ngIf="speciesForm.get('points')?.errors?.['required'] && speciesForm.get('points')?.touched">
+          Points are required
+        </span>
+                <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['points']">
+          {{ error }}
+        </span>
+            </div>
+        </div>
+
+        <div class="mt-6 flex justify-end space-x-4">
+            <a routerLink="/dashboard/species"
+               type="button"
+               class="px-4 py-2 border rounded-md text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+                Cancel
+            </a>
+            <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+                    [disabled]="speciesForm.invalid"
+            >
+                Update
+            </button>
+        </div>
+    </form>
+</div>

@@ -2,14 +2,22 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
       colors: {
-        appbg: '#fff8e0',
+        appbg: {
+          light: '#fff8e0',
+          dark: '#1a202c',
+          default: '#fff8e0',
+        },
       }
     },
   },
-  plugins: [],
+  darkMode: 'media',
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 
