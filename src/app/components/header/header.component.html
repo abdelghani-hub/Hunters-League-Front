@@ -1,0 +1,45 @@
+<header class="absolute top-0 w-full z-10 bg-amber-700/50 dark:bg-amber-900 backdrop-blur-sm max-h-[10vh]">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <app-logo></app-logo>
+      </div>
+
+      <div class="hidden md:flex space-x-8">
+        <a routerLink="/home"
+           routerLinkActive="text-amber-400" class="text-white hover:text-amber-400 transition">
+          Home
+        </a>
+        <a routerLink="/competitions"
+           routerLinkActive="text-amber-400" class="text-white hover:text-amber-400 transition">Competitions</a>
+        <a routerLink="/species"
+           routerLinkActive="text-amber-400" class="text-white hover:text-amber-400 transition">Species</a>
+        <a routerLink="/contact"
+           routerLinkActive="text-amber-400" class="text-white hover:text-amber-400 transition">Contact</a>
+      </div>
+
+      <div>
+        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="https://readymadeui.com/team-1.webp" alt="User dropdown">
+
+        <!-- Dropdown menu -->
+        <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>Bonnie Green</div>
+            <div class="font-medium truncate">name&#64;flowbite.com</div>
+          </div>
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+            </li>
+            <li *ngIf="role == 'ADMIN'">
+              <a routerLink="/dashboard" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            </li>
+          </ul>
+          <div class="py-1">
+            <button (click)="logout()" class="block px-4 py-2 text-sm text-left w-full rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

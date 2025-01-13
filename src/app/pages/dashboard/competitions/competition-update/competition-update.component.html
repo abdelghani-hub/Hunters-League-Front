@@ -1,0 +1,161 @@
+<div class="p-6 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow">
+  <div class="mb-6">
+    <h2 class="text-xl text-center font-semibold text-gray-800 dark:text-white">Update Competition</h2>
+  </div>
+
+  <form [formGroup]="competitionForm" (ngSubmit)="onSubmit()">
+    <div class="grid gap-4">
+      <div class="text-center"  *ngFor="let error of serverErrors['error']">
+        <span class="text-red-500 dark:text-red-400 text-sm">
+          {{ error }}
+        </span>
+      </div>
+
+      <div class="space-y-2">
+        <label for="location" class="text-sm font-medium text-gray-700 dark:text-gray-300">Location</label>
+        <input
+          id="location"
+          type="text"
+          formControlName="location"
+          class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+        />
+        <!--        Error handling -->
+        <span class="text-red-500 dark:text-red-400 text-xs"
+              *ngIf="competitionForm.get('location')?.errors?.['required'] && competitionForm.get('location')?.touched">
+          Location is required
+        </span>
+        <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['location']">
+          {{ error }}
+        </span>
+        <!--        End Error handling-->
+
+      </div>
+
+      <div class="space-y-2">
+        <label for="date" class="text-sm font-medium text-gray-700 dark:text-gray-300">Date</label>
+        <input
+          id="date"
+          type="datetime-local"
+          formControlName="date"
+          class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+        />
+        <!--        Error handling -->
+        <span class="text-red-500 dark:text-red-400 text-xs"
+              *ngIf="competitionForm.get('date')?.errors?.['required'] && competitionForm.get('date')?.touched">
+          Location is required
+        </span>
+        <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['date']">
+          {{ error }}
+        </span>
+        <!--        End Error handling-->
+      </div>
+
+      <div class="space-y-2">
+        <label for="speciesType" class="text-sm font-medium text-gray-700 dark:text-gray-300">Species Type</label>
+        <select
+          id="speciesType"
+          formControlName="speciesType"
+          class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+        >
+          <option value="SEA">Sea</option>
+          <option value="BIG_GAME">Big Game</option>
+          <option value="BIRD">Bird</option>
+        </select>
+
+        <!--        Error handling -->
+        <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['speciesType']">
+          {{ error }}
+        </span>
+        <!--        End Error handling-->
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <label for="minParticipants" class="text-sm font-medium text-gray-700 dark:text-gray-300">Min
+            Participants</label>
+          <input
+            id="minParticipants"
+            type="number"
+            formControlName="minParticipants"
+            min="1"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+
+          <!--        Error handling -->
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="competitionForm.get('minParticipants')?.errors?.['required'] && competitionForm.get('minParticipants')?.touched">
+            Min Participants is required
+          </span>
+          <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['minParticipants']">
+            {{ error }}
+          </span>
+          <!--        End Error handling-->
+        </div>
+
+        <div class="space-y-2">
+          <label for="maxParticipants" class="text-sm font-medium text-gray-700 dark:text-gray-300">Max
+            Participants</label>
+          <input
+            id="maxParticipants"
+            type="number"
+            formControlName="maxParticipants"
+            min="1"
+            class="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+
+          <!--        Error handling -->
+          <span class="text-red-500 dark:text-red-400 text-xs"
+                *ngIf="competitionForm.get('maxParticipants')?.errors?.['required'] && competitionForm.get('maxParticipants')?.touched">
+            Max Participants is required
+          </span>
+          <span class="text-red-500 dark:text-red-400 text-xs" *ngFor="let error of serverErrors['maxParticipants']">
+            {{ error }}
+          </span>
+          <!--        End Error handling-->
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <input
+          id="openRegistration"
+          type="checkbox"
+          formControlName="openRegistration"
+          class="w-4 h-4 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
+        />
+        <label for="openRegistration" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+          Open Registration
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-between">
+      <div class="flex items-end dark:text-gray-300">
+        <div class="flex">Code#
+          <span
+            class="py-1 px-2 rounded-md bg-gray-600 text-sm font-semibold text-blue-200">{{ competitionForm.get('code')?.value }}
+          </span>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end space-x-4">
+        <a routerLink="/dashboard/competitions"
+           type="button"
+           class="px-4 py-2 border rounded-md text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          Cancel
+        </a>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+          [disabled]="!competitionForm.valid"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let error of serverErrors['code']">
+        <span class="text-red-500 dark:text-red-400 text-xs">
+          {{ error }}
+        </span>
+    </div>
+  </form>
+</div>

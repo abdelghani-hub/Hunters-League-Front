@@ -1,0 +1,45 @@
+<!-- Hero Section -->
+<div
+  class="relative h-screen flex items-center justify-center bg-cover bg-center"
+  style="background-image: url('/assets/images/home_image.webp');background-repeat: no-repeat;
+                    object-fit: cover;background-size: cover;background-position: center;"
+>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative text-center px-6">
+    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+      Welcome to Hunter's League
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+      Join Quebec's premier hunting community. Experience the thrill of the wilderness with fellow enthusiasts.
+    </p>
+    <div class="flex gap-4 justify-center">
+      <button class="bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition duration-300">
+        Join Now
+      </button>
+      <button
+        class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white/10 transition duration-300">
+        Learn More
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="p-3 md:p-6 lg:p-8 bg-appbg dark:bg-appbg-dark">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="text-3xl font-bold text-amber-800 dark:text-amber-500">Upcoming Competitions</h2>
+    <a routerLink="/competitions" class="flex gap-1 text-amber-800 dark:text-amber-500 hover:text-amber-600">
+      <span class="">View All</span>
+      <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+      </svg>
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Competition Card -->
+    <app-competition-card
+      *ngFor="let competition of competitions"
+      [competition]="competition"
+    ></app-competition-card>
+  </div>
+</div>
+
