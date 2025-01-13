@@ -1,37 +1,32 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {DatePipe, NgForOf, NgIf, UpperCasePipe} from "@angular/common";
-import Competition from "../../../types/Competition";
-import {CompetitionService} from "../../../core/services/competition.service";
-import {PaginationComponent} from "../../../components/pagination/pagination.component";
-import {FormsModule} from "@angular/forms";
-import {TableLoaderComponent} from "../../../components/table-loader/table-loader.component";
-import {CompetitionCreateComponent} from "./competition-create/competition-create.component";
-import {RouterLink} from "@angular/router";
-import {CreateBtnComponent} from "../../../components/create-btn/create-btn.component";
+import {Component, OnInit} from '@angular/core';
+import {NgClass, NgForOf, NgIf} from "@angular/common";
+import Competition from "../../types/Competition";
+import {CompetitionService} from "../../core/services/competition.service";
+import {CompetitionCardComponent} from "../../components/competition-card/competition-card.component";
+import {TableLoaderComponent} from "../../components/table-loader/table-loader.component";
+import {PaginationComponent} from "../../components/pagination/pagination.component";
 
 @Component({
   selector: 'app-competitions',
   standalone: true,
   imports: [
+    NgClass,
+    CompetitionCardComponent,
     NgForOf,
     NgIf,
-    DatePipe,
-    PaginationComponent,
-    FormsModule,
     TableLoaderComponent,
-    RouterLink,
-    CreateBtnComponent,
+    PaginationComponent
   ],
   templateUrl: './competitions.component.html',
   styleUrl: './competitions.component.css'
 })
-
 export class CompetitionsComponent implements OnInit {
   public competitions: Competition[] = [];
-  public currentPage = 0;
-  public pageSize = 10;
+  public currentPage = 1;
+  public pageSize = 6;
   public totalElements = 0;
   public totalPages = 0;
+  public speciesType = 'BIG_GAME';
   public loading = false;
 
   constructor(private competitionService: CompetitionService) {}
@@ -42,7 +37,7 @@ export class CompetitionsComponent implements OnInit {
 
   private initializePage(): void {
     this.loading = true;
-    this.competitionService.getPage({
+    this.competitionService.getPageByType(this.speciesType,{
       page: this.currentPage,
       size: this.pageSize,
       sort: 'date,desc'
@@ -55,14 +50,14 @@ export class CompetitionsComponent implements OnInit {
         this.pageSize = response.page.size;
         this.loading = false;
       },
-      error: (error) => {
-        console.error('Error loading competitions:', error);
+      error: () => {
         this.loading = false;
       }
     });
   }
 
   public onPageChange(page: number): void {
+    this.competitions = [];
     this.currentPage = page;
     this.initializePage();
   }
@@ -70,7 +65,18 @@ export class CompetitionsComponent implements OnInit {
   public onPageSizeChange(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.pageSize = +selectedValue;
+    this.competitions = [];
     this.currentPage = 0;
+    this.initializePage();
+  }
+
+  changeType(type: string) {
+    if (type === this.speciesType) {
+      return;
+    }
+
+    this.speciesType = type;
+    this.competitions = [];
     this.initializePage();
   }
 }

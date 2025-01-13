@@ -4,9 +4,7 @@ import {RouterLink} from "@angular/router";
 @Component({
   selector: 'app-create-btn',
   standalone: true,
-    imports: [
-        RouterLink
-    ],
+    imports: [],
   templateUrl: './create-btn.component.html',
   styleUrl: './create-btn.component.css'
 })

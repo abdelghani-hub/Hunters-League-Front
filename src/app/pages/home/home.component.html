@@ -1,6 +1,6 @@
 <!-- Hero Section -->
 <div
-  class="relative h-screen flex items-center justify-center  bg-cover bg-center"
+  class="relative h-screen flex items-center justify-center bg-cover bg-center"
   style="background-image: url('/assets/images/home_image.webp');background-repeat: no-repeat;
                     object-fit: cover;background-size: cover;background-position: center;"
 >
@@ -24,9 +24,15 @@
   </div>
 </div>
 
-<div class="p-3 md:p-6 lg:p-8 bg-appbg">
-  <div>
-    <h2 class="text-3xl font-bold text-amber-800 mb-6">Upcoming Competitions</h2>
+<div class="p-3 md:p-6 lg:p-8 bg-appbg dark:bg-appbg-dark">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="text-3xl font-bold text-amber-800 dark:text-amber-500">Upcoming Competitions</h2>
+    <a routerLink="/competitions" class="flex gap-1 text-amber-800 dark:text-amber-500 hover:text-amber-600">
+      <span class="">View All</span>
+      <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+      </svg>
+    </a>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Competition Card -->

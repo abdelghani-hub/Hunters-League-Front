@@ -3,6 +3,7 @@ import {authGuard} from "./core/guards/auth.guard";
 import {HomeComponent} from "./pages/home/home.component";
 import {roleGuard} from "./core/guards/role.guard";
 import {LandingComponent} from "./layouts/landing/landing.component";
+import {CompetitionsComponent} from "./pages/competitions/competitions.component";
 
 export const routes: Routes = [
   {
@@ -17,6 +18,14 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [roleGuard],
+        data: {
+          roles: ['ADMIN', 'MEMBER', 'JURY']
+        }
+      },
+      {
+        path: 'competitions',
+        component: CompetitionsComponent,
         canActivate: [roleGuard],
         data: {
           roles: ['ADMIN', 'MEMBER', 'JURY']
