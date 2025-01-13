@@ -5,11 +5,12 @@ import {NgForOf} from "@angular/common";
 import {CompetitionService} from "../../core/services/competition.service";
 import {PageRequest} from "../../core/models/pagination.types";
 import Competition from "../../types/Competition";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CompetitionCardComponent, NgForOf],
+  imports: [CompetitionCardComponent, NgForOf, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

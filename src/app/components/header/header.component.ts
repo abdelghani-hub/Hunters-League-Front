@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgIf} from "@angular/common";
 import {AuthService} from "../../core/services/auth.service";
-import {Router, RouterLink} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {LogoComponent} from "../logo/logo.component";
 
 @Component({
@@ -10,7 +10,8 @@ import {LogoComponent} from "../logo/logo.component";
   imports: [
     NgIf,
     RouterLink,
-    LogoComponent
+    LogoComponent,
+    RouterLinkActive
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

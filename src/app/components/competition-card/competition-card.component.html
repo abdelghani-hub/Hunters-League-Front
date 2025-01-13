@@ -1,4 +1,5 @@
-<div class="m-auto cursor-pointer hover:scale-[1.02] max-w-sm rounded-lg overflow-hidden shadow-lg bg-amber-100 hover:shadow-xl transition-shadow duration-300">
+<div routerLink="/competitions/code"
+     class="m-auto h-full cursor-pointer hover:scale-[1.02] max-w-sm rounded-lg overflow-hidden shadow-lg bg-amber-100 hover:shadow-xl transition-shadow duration-300 flex flex-col">
   <!-- Card Image -->
   <div class="relative">
     <img
@@ -15,40 +16,50 @@
   </div>
 
   <!-- Card Content -->
-  <div class="p-6">
-    <div class="flex justify-between items-start mb-4">
-      <div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ competition.speciesType }}</h3>
-        <p class="inline-block mr-1">Code:</p><code class="text-gray-600 text-sm py-1 px-2 bg-amber-200 rounded-md">{{ competition.code }}</code>
-      </div>
-      <div class="text-right">
-        <p class="text-sm text-gray-500">{{ formatDate(competition.date) }}</p>
-      </div>
-    </div>
-
-    <div class="space-y-3">
-      <!-- Location -->
-      <div class="flex items-center text-gray-700">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <span class="text-sm">{{ competition.location }}</span>
+  <div class="p-6 bg-amber-200 flex flex-col flex-1">
+    <div class="mb-4">
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{{ competition.speciesType }}</h3>
+        </div>
+        <div class="text-right">
+          <p class="text-sm text-gray-500 flex gap-1 items-center">
+            <svg class="w-4 h-4 inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+            {{ formatDate(competition.date) }}
+          </p>
+        </div>
       </div>
 
-      <!-- Participants -->
-      <div class="flex items-center text-gray-700">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <span class="text-sm">{{ competition.minParticipants }} - {{ competition.maxParticipants }} participants</span>
+      <div class="space-y-3">
+        <!-- Code -->
+        <p class="inline-block mr-1">Code:</p><code class="text-gray-600 text-sm py-1 px-2 bg-amber-200 dark:bg-amber-400 rounded-md">{{ competition.code }}</code>
+
+        <!-- Location -->
+        <div class="flex items-center text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="text-sm">{{ competition.location }}</span>
+        </div>
+
+        <!-- Participants -->
+        <div class="flex items-center text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span class="text-sm">{{ competition.minParticipants }} - {{ competition.maxParticipants }} participants</span>
+        </div>
       </div>
     </div>
 
     <!-- Action Button -->
     <button
-      class="w-full mt-6 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      [disabled]="!competition.openRegistration"
+      (click)="participate()"
+      class="w-full mt-auto bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="isCompetitionInvalid()"
     >
       {{ competition.openRegistration ? 'Register Now' : 'Registration Closed' }}
     </button>

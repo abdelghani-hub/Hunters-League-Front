@@ -1,0 +1,52 @@
+<div class="min-h-screen pt-20 bg-appbg-light dark:bg-appbg-dark items-center px-3 md:px-6 lg:px-8">
+  <div class="relative pt-5">
+    <div class="flex items-center flex-nowrap justify-center gap-8">
+      <button
+        (click)="changeType('BIRD')"
+        [ngClass]="{
+            'px-3 py-2 mx-2 rounded-full text-nowrap border border-gray-300 dark:text-gray-300 md:min-w-[15rem] hover:bg-amber-600 dark:hover:text-gray-800 hover:font-semibold': true,
+            'bg-amber-600 dark:text-gray-800 font-semibold': speciesType === 'BIRD'}
+          ">
+        Bird
+      </button>
+      <button
+        (click)="changeType('BIG_GAME')"
+        [ngClass]="{
+            'px-3 py-2 mx-2 rounded-full text-nowrap border border-gray-300 dark:text-gray-300 md:min-w-[15rem] hover:bg-amber-600 dark:hover:text-gray-800 hover:font-semibold': true,
+            'bg-amber-600 dark:text-gray-800 font-semibold': speciesType === 'BIG_GAME'}
+          ">
+        Big game
+      </button>
+      <button
+        (click)="changeType('SEA')"
+        [ngClass]="{
+            'px-3 py-2 mx-2 rounded-full text-nowrap border border-gray-300 dark:text-gray-300 md:min-w-[15rem] hover:bg-amber-600 dark:hover:text-gray-800 hover:font-semibold': true,
+            'bg-amber-600 dark:text-gray-800 font-semibold': speciesType === 'SEA'}
+          ">
+        Sea
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <app-pagination
+      *ngIf="totalPages > 0"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+  </div>
+
+  <div *ngIf="loading" class="flex justify-center items-center h-screen">
+    <div class="scale-150">
+      <app-table-loader></app-table-loader>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 py-8">
+    <app-competition-card
+      *ngFor="let competition of competitions"
+      [competition]="competition"
+    ></app-competition-card>
+  </div>
+</div>
