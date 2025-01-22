@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {LoginComponent} from "./pages/auth/login/login.component";
 import {FormsModule} from "@angular/forms";
 import {initFlowbite} from "flowbite";
 
