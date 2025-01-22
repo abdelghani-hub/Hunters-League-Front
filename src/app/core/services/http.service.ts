@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { PageRequest } from '../models/pagination.types';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {Router} from '@angular/router';
+import {PageRequest} from '../models/pagination.types';
 
 export interface Pageable {
   page: number;
@@ -65,14 +65,14 @@ export abstract class httpService<T> {
       );
   }
 
-  getPage(pageable: PageRequest): Observable<PageableResponse<T>> {
+  getPage(pageable: PageRequest = {page: 0, size: 10}): Observable<PageableResponse<T>> {
     const params = new HttpParams()
       .set('page', pageable.page)
       .set('size', pageable.size)
       .set('sort', pageable.sort || 'date,desc');
 
     return this.http
-      .get<PageableResponse<T>>(`${this.baseURL}/${this.endpoint}/all`, { params })
+      .get<PageableResponse<T>>(`${this.baseURL}/${this.endpoint}/all`, {params})
       .pipe(
         catchError(this.handleError.bind(this))
       );
